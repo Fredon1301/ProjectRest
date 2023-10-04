@@ -17,6 +17,7 @@ userRouter.route('/api/users/:id')
 .get((req, res) => userController.getUser(req, res))
 .delete((req, res) => userController.deleteUserById(req, res))
 
-userRouter.route('/login').post((req, res) => userController.login(req, res))
+userRouter.route('/login').post((req, res) => userController.login(req, res));
+
 
 module.exports = userRouter

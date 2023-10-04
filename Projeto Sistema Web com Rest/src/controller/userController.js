@@ -54,14 +54,13 @@ module.exports = {
         if (!result) {
             res.status(401).json({ message: "Credenciais inválidas" });
         } else {
+            
             const secret = process.env.SECRET;
             jwtService.sign(req.body, secret, (err, token) => {
                 if (err) {
                     res.status(401).json({ message: "Não foi possível autenticar" })
                 } else {
-                    res.set("Access-Token", token)
-                    res.status(202).send("Login bem sucedido")
-                    res.end()
+                    res.status(201).json({"Access-Token": token})
                 }
             });
         }
