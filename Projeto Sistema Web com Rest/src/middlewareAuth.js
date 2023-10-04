@@ -17,7 +17,7 @@ module.exports = async (req, res, next) => {
     return next();
   }
 
-  let token = req.headers.authorization;
+  let token = req.body.authorization;
   if (!token) {
     res.status(401).json({ message: 'Você não tem autorização para acessar esse recurso' });
     return;

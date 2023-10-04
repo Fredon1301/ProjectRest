@@ -7,7 +7,7 @@ import { useNavigate, Link} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Register = () => {
+const Product = () => {
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -19,9 +19,9 @@ const Register = () => {
       }
 
       try {
-          const response = await axios.post('http://localhost:3333/api/users', data); 
+          const response = await axios.post('http://localhost:3333/api/product', data); 
           if(response.data.success) {
-              navigate('/');
+              navigate('/home');
               toast("Registro feito com sucesso!")
           } else {
               toast(response.data.message);
@@ -52,22 +52,23 @@ const Register = () => {
                             <LiquorIcon />
                         </Avatar>
                         <Typography variant='h5'>
-                            Register
+                            Product
                         </Typography>
 
                         <Box component="form" onSubmit={handleSubmit} width="40%" flexDirection="column" display="flex" alignItems="center" justifyContent="center">
                             {}
                             <TextField required fullWidth margin="normal" name="name" type="text" label="Name" />
-                            <TextField required fullWidth margin="normal" name="cpf" type="text" label="Cpf" inputProps={{ minLength: 11, maxLength: 11 }} />
-                            <TextField required fullWidth margin="normal" name="email" type="email" label="Email"  />
-                            <TextField required fullWidth margin="normal" name="password" type="password" label="Password" />
-                            <Button type="submit" fullWidth sx={{ bgcolor: "primary.main", mt: 5 }} variant='contained'> Register </Button>
+                            <TextField required fullWidth margin="normal" name="productType" type="text" label="Product Type" />
+                            <TextField required fullWidth margin="normal" name="currentPrice" type="double" label="Price"  />
+                            <TextField required fullWidth margin="normal" name="expirationDate" type="text" label="Expiration Date" />
+                            <TextField required fullWidth margin="normal" name="codProduct" type="text" label="Code Product" />
+                            <Button type="submit" fullWidth sx={{ bgcolor: "primary.main", mt: 5 }} variant='contained'> Create </Button>
                             <Grid sx={{ mt: 2 }} container>
                                 <Grid item xs={4}>
                                     {}
                                 </Grid>
                                 <Grid item xs={8}>
-                                    <Link to="/">Already have an account? Sign in</Link>
+                                    <Link to="/home">Return to home</Link>
                                 </Grid>
                             </Grid>
                         </Box>
@@ -79,4 +80,4 @@ const Register = () => {
     );
 }
 
-export default Register;
+export default Product;

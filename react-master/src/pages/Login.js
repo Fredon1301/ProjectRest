@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Container, Grid, Link, TextField, Typography } from '@mui/material'
+import { Avatar, Box, Button, Container, Grid, TextField, Typography } from '@mui/material'
 import { blue, red } from '@mui/material/colors'
 import {ThemeProvider, createTheme} from '@mui/material/styles'
 import LiquorIcon from '@mui/icons-material/Liquor'
@@ -6,7 +6,7 @@ import httpService from '../services/httpService'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
     const navigate = useNavigate()
@@ -59,11 +59,8 @@ const Login = () => {
                         <TextField required fullWidth margin="normal" name="password" type="password" label="Password"/>
                         <Button type="submit" fullWidth sx={{bgcolor: "primary.main", mt: 5}} variant='contained'> Send </Button>
                         <Grid sx={{mt: 2}} container>
-                            <Grid item xs={4}>
-                                <Link> Forgot Password? </Link>
-                            </Grid>
                             <Grid item xs={8}>
-                                <Link> Don't have an account? Create Account </Link>
+                                <Link to="/register/user">Don't have an account? Create Account </Link>
                             </Grid>
                         </Grid>
                     </Box>
