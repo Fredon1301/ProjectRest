@@ -9,9 +9,9 @@ module.exports = {
             res.status(500).json({ message: "Não foi possível recuperar os produtos" });
         });
     },
-    deleteProductById: async (req, res) => {
+    deleteProduct: async (req, res) => {
         try {
-            const result = await product.deleteOne({ codProduto: req.body.codProduct });
+            const result = await product.deleteOne({ codProduct: req.body.codProduct });
             if (result.deletedCount > 0) {
                 res.status(200).json({ message: "Produto removido com sucesso" });
             } else {
@@ -21,22 +21,22 @@ module.exports = {
             res.status(500).json({ message: "Não foi possível remover o produto" });
         }
     },
-    // getProduct: async (req, res) => {
-    //     try {
-    //         const result = await product.findOne({ codProduto: req.body.codProduct });
-    //         if (!result) {
-    //             res.status(404).json({ message: "Produto não encontrado" });
-    //         } else {
-    //             res.status(200).json(result);
-    //         }
-    //     } catch (err) {
-    //         res.status(500).json({ message: "Não foi possível recuperar o produto no momento" });
-    //     }
-    //},
+    getProducts: async (req, res) => {
+        try {
+             const result = await product.findOne({ codProduct: req.body.codProduct });
+             if (!result) {
+                 res.status(404).json({ message: "Produto não encontrado" });
+             } else {
+                 res.status(200).json(result);
+             }
+         } catch (err) {
+             res.status(500).json({ message: "Não foi possível recuperar o produto no momento" });
+        }
+  },
     updateProduct: async (req, res) => {
         try {
-            const result = await product.updateOne({ codProduto: req.body.codProduct }, req.body.codProduct);
-            if (result.nModified > 0) {
+            const result = await product.updateOne({ codProduct: req.body.codProduct}, req.body);
+            if (result.modifiedCount> 0) {
                 res.status(200).json({ message: "Produto atualizado com sucesso" });
             } else {
                 res.status(404).json({ message: "Produto não encontrado para atualização" });

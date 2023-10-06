@@ -15,6 +15,7 @@ const httpService = {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
+
             },
             body: JSON.stringify(data)
         })
@@ -44,7 +45,42 @@ const httpService = {
 
             },
                     })  
-    }
+    },
+    getProducts: (data) => {
+        return fetch("http://localhost:3333/api/product",
+       {
+           method: "GET",
+           headers: {
+               "Content-Type": "application/json",
+               "Authorization": localStorage.getItem("token")
+
+           },
+                   })  
+   },
+   updateProduct: (data) => {
+    return fetch("http://localhost:3333/api/product",
+    {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        },  
+        body: JSON.stringify(data)
+    })
+
+},
+deleteProduct: (data) => {
+    return fetch("http://localhost:3333/api/product",
+    {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": localStorage.getItem("token")
+        },  
+        body: JSON.stringify(data)
+    })
+
+},
     
 }
 export default httpService

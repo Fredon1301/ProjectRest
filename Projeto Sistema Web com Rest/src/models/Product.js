@@ -9,7 +9,8 @@ const productSchema = new Schema({
     productType: {type: String, required: true},
     currentPrice: {type: Number, required: true},
     expirationDate: {type: String, required: false},
-    codProduct: {type: String, unique: true, required: true}
+    codProduct: {type: String, unique: true, required: true},
+    quantity: {type: Number, required: true}
 
 
     

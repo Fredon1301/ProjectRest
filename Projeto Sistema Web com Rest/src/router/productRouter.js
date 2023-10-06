@@ -11,11 +11,11 @@ ProductRouter.route('/api/product')
 .get((req, res) => ProductController.getProduct(req, res))
 .post((req, res) => ProductController.createProduct(req, res))
 .put((req, res) => ProductController.updateProduct(req, res))
+.delete((req, res) => ProductController.deleteProduct(req, res))
 
 
 ProductRouter.route('/api/product/:id')
 //.get((req, res) => ProductController.getProduct(req, res))
-.delete((req, res) => ProductController.deleteProductById(req, res))
 
 
 

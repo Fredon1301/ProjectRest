@@ -19,7 +19,12 @@ const Product = () => {
       }
 
       try {
-          const response = await axios.post('http://localhost:3333/api/product', data); 
+        let config = {
+            headers: {
+              'Authorization':  localStorage.getItem("token")
+            }
+          }
+          const response = await axios.post('http://localhost:3333/api/product', data, config); 
           if(response.data.success) {
               navigate('/home');
               toast("Registro feito com sucesso!")
@@ -28,7 +33,7 @@ const Product = () => {
 
           }
       } catch (err) {
-          toast("Erro desconhecido");
+          toast("Unknown error");
       }
   };
 
@@ -62,6 +67,7 @@ const Product = () => {
                             <TextField required fullWidth margin="normal" name="currentPrice" type="double" label="Price"  />
                             <TextField required fullWidth margin="normal" name="expirationDate" type="text" label="Expiration Date" />
                             <TextField required fullWidth margin="normal" name="codProduct" type="text" label="Code Product" />
+                            <TextField required fullWidth margin="normal" name="quantity" type="number" label="Quantity"  />
                             <Button type="submit" fullWidth sx={{ bgcolor: "primary.main", mt: 5 }} variant='contained'> Create </Button>
                             <Grid sx={{ mt: 2 }} container>
                                 <Grid item xs={4}>

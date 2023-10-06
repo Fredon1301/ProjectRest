@@ -9,12 +9,16 @@ module.exports = {
             res.status(500).json({ message: "Não foi possível recuperar os usuários" })
         });
     },
-    deleteUserById: async (req, res) => {
+    deleteUser: async (req, res) => {
         try {
-            const result = await user.deleteOne({ cpf: req.params.id });
-            res.status(204).send("O " + result._doc.name + "excluído com sucesso")
+            const result = await user.deleteOne({ cpf: req.body.cpf });
+            if (result.deletedCount > 0) {
+                res.status(200).json({ message: "Usuario removido com sucesso" });
+            } else {
+                res.status(404).json({ message: "Usuario não encontrado para remoção" });
+            }
         } catch (err) {
-            res.status(500).json({ message: "Não foi possível remover o usuário" })
+            res.status(500).json({ message: "Não foi possível remover o usuario" });
         }
     },
     getUser: async (req, res) => {
@@ -32,7 +36,7 @@ module.exports = {
     updateUser: async (req, res) => {
         try {
             const result = await user.updateOne({ cpf: req.body.cpf }, req.body);
-            if (result.nModified > 0) {
+            if (result.modifiedCount > 0) {
                 res.status(200).json({ message: "Usuário atualizado com sucesso" });
             } else {
                 res.status(404).json({ message: "Usuário não encontrado para atualização" })
@@ -44,9 +48,9 @@ module.exports = {
     createUser: async (req, res) => {
         try {
             const result = await user.create(req.body);
-            res.status(201).json({ message: `O usuário ${result._doc.name} foi criado com sucesso` });
+            res.status(201).json({ message: `The user ${result._doc.name} was created with sucess` });
         } catch (err) {
-            res.status(500).json({ message: `Não foi possível criar o usuário ${req.body.name}` });
+            res.status(500).json({ message: `Unable to create user ${req.body.name}` });
         }
     },
     login: async (req, res) => {

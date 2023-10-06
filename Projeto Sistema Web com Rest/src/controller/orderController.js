@@ -56,7 +56,7 @@ module.exports = {
   updateOrder: async (req, res) => {
     try {
       const result = await Order.updateOne({ codOrder: req.body.codOrder }, req.body);
-      if (result.nModified > 0) {
+      if (result.modifiedCount > 0) {
         res.status(200).json({ message: "Pedido atualizado com sucesso" });
       } else {
         res.status(404).json({ message: "Pedido não encontrado para atualização" });

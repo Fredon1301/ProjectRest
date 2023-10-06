@@ -28,7 +28,7 @@ const Register = () => {
 
           }
       } catch (err) {
-          toast("Erro desconhecido");
+          toast("Unknown error");
       }
   };
 

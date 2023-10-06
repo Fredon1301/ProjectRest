@@ -25,7 +25,7 @@ http.createServer(app).listen(3333)
 //Importa os roteadores
 const middlewareAuth = require('./src/middlewareAuth')
 const userRouter = require('./src/router/userRouter')
-const promotionRouter = require('./src/router/promotionRouter')
+
 const productRouter = require('./src/router/productRouter')
 const orderRouter = require('./src/router/orderRouter')
 const jwtService = require('jsonwebtoken')
@@ -36,7 +36,7 @@ app.use(cors());
 app.use(express.json())
 app.use(middlewareAuth)
 app.use(userRouter)
-app.use(promotionRouter)
+
 app.use(productRouter)
 app.use(orderRouter)
 
